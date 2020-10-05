@@ -17,6 +17,7 @@ func main() {
 	http.HandleFunc("/", index)
 	http.HandleFunc("/favicon.ico", favicon)
 	http.HandleFunc("/blog", blog)
+	http.HandleFunc("/math", math)
 
 	go http.ListenAndServe(":80", nil)
 
@@ -41,4 +42,9 @@ func favicon(w http.ResponseWriter, r *http.Request) {
 func blog(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/blog.html")
 	log.Printf("blog.html %s\n", r.RemoteAddr)
+}
+
+func math(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "html/math.html")
+	log.Printf("math.html %s\n", r.RemoteAddr)
 }

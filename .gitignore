@@ -1,0 +1,11 @@
+*
+!*/
+
+!.gitignore
+!LICENSE
+!Makefile
+!*.md
+!*.go
+!*.src
+!*.sh
+!*.html

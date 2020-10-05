@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Chesters Site</title>
+		<style>
+			body {
+				background-color: #EEEEEE;
+				color: #271828;
+			}
+			.post {
+				background-color: #FAFAFA;
+				padding: 30px 40px;
+				box-shadow: 0px 5px 5px 1px grey;
+				margin: 50px auto;
+				width: 40vw;
+			}
+			h1 {
+				color: #314159;
+			}
+			a {
+				color: #986960;
+			}
+			a:visited {
+				color: #738905;
+			}
+		</style>
+	</head>
+	<body>
+<style>
+	.topbar {
+		background-color: #FAFAFA;
+		margin: 0px 0px 40px 0px;
+		overflow: hidden;
+		box-shadow: 0px 3px 3px 1px grey;
+	}
+	.topbar a {
+		float: left;
+		text-decoration: none;
+		color: #333333;
+		padding: 20px 15px;
+		text-align: center;
+	}
+	.topbar a:hover {
+		color: #EEEEEE;
+		background-color: #555555;
+	}
+</style>
+<div class="topbar">
+	<a href="/">Home</a>
+</div>
+<div class=post>
+<h1>Simple powerful scripts and dmenu.</h1>
+
+<p>I recently wrote a <a href="https://github.com/Techser/MusicManager">simple music player</a> and was really surprised by a couple of things.
+As I had never really written any bash scripts besides the odd one or two liner, the remarkable efficiency of pipelines really blew me away.
+For instance the one line to get the path to all subdirectories to the current one, sort them, and then let the user search for and choose one is simply</p>
+
+<p><code>find -type d | sort -V | dmenu -i -l 10</code></p>
+
+<p>This might seem like a trivial example to those more familiar with shell scripting but to accomplish all that in a single line of code is really quite impressive to me.</p>
+
+<p>The other thing that surprised me while writing that script was how absurdly powerful dmenu is.
+It&rsquo;s a really simple program.
+You pipe in text and each line is displayed as an option to the user.
+The line they pick is then printed to stdout and it closes.
+But with this simple program you can build anything from a <a href="https://github.com/firecat53/networkmanager-dmenu">frontend to NetworkManager</a>, to a full blown <a href="https://github.com/huijunchen9260/dmenufm">file manager</a>.
+I&rsquo;m even conviced you could build a text editor with it, although I think I&rsquo;m going to stick with vim for now.</p>
+
+<p>I found when writing MusicManager that I really enjoy writing this kind of little script.
+While bash is a bit of a weird language, its versatility is really something.
+I&rsquo;m hoping I can think of some more interesting things to write in the future that can be accomplished in the same style of short shell script.</p>
+</div>
+	</body>
+</html>

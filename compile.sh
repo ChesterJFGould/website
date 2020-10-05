@@ -8,6 +8,7 @@ topbar="html/topbar.html"
 cat $header $topbar > $index
 
 ls posts/*.md \
+	| sort -hr \
 	| xargs -I{} bash -c "{ echo '<div class='post'>'; cat {} | markdown; echo '</div>'; }" >> $index
 
 cat $footer >> $index

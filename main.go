@@ -35,3 +35,4 @@ func index(w http.ResponseWriter, r *http.Request) {
 func favicon(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "favicon.ico")
 }
+

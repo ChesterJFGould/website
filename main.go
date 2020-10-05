@@ -29,7 +29,7 @@ func main() {
 
 func index(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/index.html")
-	log.Println("index.html")
+	log.Printf("index.html %s\n", r.RemoteAddr)
 }
 
 func favicon(w http.ResponseWriter, r *http.Request) {

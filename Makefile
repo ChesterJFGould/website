@@ -2,6 +2,7 @@ header = html/header.html
 footer = html/footer.html
 topbar = html/topbar.html
 index = html/index.html
+blog = html/blog.html
 raw = html/raw
 binary = $(shell basename $(shell pwd))
 
@@ -15,12 +16,20 @@ clean:
 $(binary): main.go
 	go build
 
-html/index.html: $(raw)
+$(index): $(raw)
 	cat $(header) $(topbar) > $(index)
 	find $(raw) -type f -name *.html \
 		| sort -nr -t. -k2 \
 		| xargs -I{} bash -c "{ echo '<div class='post'>'; cat {}; echo '</div>'; }" >> $(index)
 	cat $(footer) >> $(index)
+
+$(blog): posts
+	cat $(header) $(topbar) > $(blog)
+	find $(raw)/posts -type -f -name *.html \
+		| sort -nr -t. -k2 \
+		| xargs -I{} bash -c "{ echo '<div class='post'>'; cat {}; echo '</div>'; }" >> $(blog)
+	cat $(footer) >> $(blog)
+		
 
 $(raw): posts
 

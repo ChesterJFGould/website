@@ -45,13 +45,18 @@ $(raw): rawBlog rawMath
 
 rawBlog: blog/*.md
 	- mkdir -p $(raw)/blog
-	- ls -1 blog/*.md \
-		| xargs -I{} sh -c 'markdown {} > $(raw)/{}'
-
+	- find blog -type f -name "*.md" \
+		| xargs -I{} sh -c 'eqn {} -TMathML \
+			| tail +3 \
+			| sed "s/.EQ//g; s/.EN//g; s/<mo>(null)<\/mo>//g" \
+			| markdown > $(raw)/{}'
 	- rename .md .html $(raw)/blog/*.md
 
 rawMath: math/Math184/*.md
 	mkdir -p $(raw)/math/Math184
 	- find math -type f -name "*.md" \
-		| xargs -I{} sh -c 'eqn {} -TMathML | tail +3 | sed "s/.EQ//g; s/.EN//g; s/<mo>(null)<\/mo>//g" | markdown > $(raw)/{}'
+		| xargs -I{} sh -c 'eqn {} -TMathML \
+			| tail +3 \
+			| sed "s/.EQ//g; s/.EN//g; s/<mo>(null)<\/mo>//g" \
+			| markdown > $(raw)/{}'
 	- rename .md .html $(raw)/math/Math184/*.md

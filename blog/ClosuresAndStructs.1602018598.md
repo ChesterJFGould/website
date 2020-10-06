@@ -1,7 +1,7 @@
 # Closures, Data, and Functions
 I recently came across a really interesting concept while reading
 [the wizard book](https://web.mit.edu/alexmv/6.037/sicp.pdf).
-The concept starts with an implementation of cons, car, and cdr
+The concept is introduced with an implementation of cons, car, and cdr
 (or cons, first, and rest, for those using BSL) in Scheme.
 
 	(define (cons a, b)

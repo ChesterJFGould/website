@@ -53,5 +53,5 @@ rawBlog: blog/*.md
 rawMath: math/Math184/*.md
 	mkdir -p $(raw)/math/Math184
 	- find math -type f -name "*.md" \
-		| xargs -I{} sh -c 'eqn {} -TMathML | tail +3 | sed "s/.EQ//g; s/.EN//g" | markdown > $(raw)/{}'
+		| xargs -I{} sh -c 'eqn {} -TMathML | tail +3 | sed "s/.EQ//g; s/.EN//g; s/<mo>(null)<\/mo>//g" | markdown > $(raw)/{}'
 	- rename .md .html $(raw)/math/Math184/*.md

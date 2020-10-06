@@ -20,7 +20,7 @@ Find |f''(x)|.
 
 |= d over dx (sec x)(tan x)|
 
-|= d over dx (sec x) times (tan x) + (sec x) times d over dx (tan x)|
+|= d over dx (sec x)(tan x) + (sec x) d over dx (tan x)|
 
 |= (sec x)(tan sup 2 x) + sec sup 3 x|
 

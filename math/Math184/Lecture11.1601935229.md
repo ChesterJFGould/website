@@ -18,7 +18,7 @@ Find |f''(x)|.
 
 |= f sup 2 (x)|
 
-|= d over dx (sec x)(tan x)|
+|= d over dx ((sec x)(tan x))|
 
 |= d over dx (sec x)(tan x) + (sec x) d over dx (tan x)|
 

@@ -41,7 +41,7 @@ func favicon(w http.ResponseWriter, r *http.Request) {
 
 func blog(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/blog.html")
-	log.Printf("blog.html %s\n", r.RemoteAddr)
+	log.Printf("blog.html %s %s\n", r.RemoteAddr, r.UserAgent())
 }
 
 func math(w http.ResponseWriter, r *http.Request) {

@@ -40,10 +40,6 @@ func favicon(w http.ResponseWriter, r *http.Request) {
 
 func blog(w http.ResponseWriter, r *http.Request) {
 	http.ServeFile(w, r, "html/blog.html")
-<<<<<<< HEAD
-	log.Printf("blog.html %s\n", r.RemoteAddr)
-=======
->>>>>>> c882ba4c0a2727e853df45e34497c5f40ae6c82f
 }
 
 func math(w http.ResponseWriter, r *http.Request) {

@@ -11,7 +11,7 @@ We can express marginal revenue in the following way
 |dR over dp = d over dp (pq)|
 |= q(1 + p over q dq over dp )|
 
-|dR over dp > 0| if and only if |q(1 + p over q dq over dp) > 0|
+|dR over dp > 0| if and only if |q(1 + p over q dq over dp ) > 0|
 
 From this we can prove that |dR over dp > 0| if and only if |p over q dq over dp
 < -1|.

@@ -3,7 +3,7 @@ delim ||
 define n( 'left ('
 define n) 'right )'
 .EN
-# Lecture 06/11/20
+# Math 184 Lecture 06/11/20
 ## [Fermat's](https://en.wikipedia.org/wiki/Pierre_de_Fermat) Theorem
 If |f| has a local maximum or minimum at an interior point |c| and if |f prime|
 exists at |c|, then |f prime (c) = 0|

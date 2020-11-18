@@ -16,7 +16,7 @@ Find |lim from {x -> 0} {sqrt {9 + x} - 3} over x|
 
 |= lim from {x -> 0} 1 over { sqrt(9 + x) + 3}|
 
-|= {lim from {x -> 0} 1 over { sqrt(9 + x) + 3}|
+|= lim from {x -> 0} 1 over { sqrt(9 + x) + 3}|
 
 |= 1 over 6|
 

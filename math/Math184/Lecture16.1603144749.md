@@ -63,7 +63,7 @@ Find the price which will maximize revenue.
 We need to find |p| such that |E(p) = -1|
 
 |{2p sup 2} over {p sup 2 - 200}|
-|2p sup 2 = -p sup 2 + 200}|
+|2p sup 2 = -p sup {2 + 200}|
 |3p sup 2 = 200|
 |p approx 8.161|
 

@@ -3,31 +3,34 @@
 <head>
 	<style>
 	body {
-		background-color: #222222;
+		background-color: #EEEEEE;
 	}
 
 	.post {
-		background-color: #314159;
-		width: 50vw;
+		background-color: #F9F9F9;
+		width: 45vw;
 		margin: 8vh auto 0vh auto;
-		box-shadow: 0.5vh 0.5vw 1vw 0 #327fa8;
+		box-shadow: 0.25vh 0.25vw 1vw 0 black;
 		padding: 2vw;
-		color: #CCCCCC;
 	}
 
 	.post>h1 {
-		color: #e5302d;
+		color: #255b3d;
+	}
+
+	.post>hr {
+		border: 1px solid #255b3d;
 	}
 
 	#topbar {
-		background-color: #314159;
+		background-color: #F9F9F9;
 		width: 90vw;
 		display: flex;
 		list-style: none;
 		margin: 2vh auto 1vh auto;
 		padding: 0;
-		box-shadow: 0.5vh 0.5vw 1vw 0 #327fa8;
-		color: #CCCCCC;
+		box-shadow: 0.25vh 0.25vw 1vw 0 black;
+		color: #255b3d;
 	}
 	#topbar>li {
 		padding: 1vh 1vw 1vh 1vw;
@@ -39,7 +42,7 @@
 	}
 
 	#topbar>li:hover {
-		background-color: #293649;
+		background-color: #DDDDDD;
 	}
 	</style>
 </head>
@@ -48,6 +51,14 @@
 <li> <h3> <a href=/> Home </a> </h3> </li>
 <li> <h3> <a href=/blog> Blog </a> </h3> </li>
 </ul>
+<div class="post">
+<h1>Hello, World!</h1>
+
+<hr />
+
+<p>This is my new website!
+I&rsquo;m not quite sure about the colour scheme yet, it&rsquo;s a bit special&hellip;</p>
+</div>
 <div class="post">
 <h1>Against Discourse</h1>
 
@@ -58,22 +69,6 @@
 <li>Freedom of speech</li>
 </ul>
 
-</div>
-<div class="post">
-<h1>Functional Programming and Shell Scripts</h1>
-</div>
-<div class="post">
-<h1>Mathematical Abstraction</h1>
-</div>
-<div class="post">
-<h1>The Unification of Math and Computer Science</h1>
-</div>
-<div class="post">
-<p>``` Haskell
-This is some code</p>
-
-<p>more code
-```</p>
 </div>
 </body>
 </html>

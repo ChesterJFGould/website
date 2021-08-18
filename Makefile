@@ -1,16 +1,25 @@
-website: html/index.html
-	mkdir -p html
-	cp html/index.html website/index.html
+website: website/index.html website/blog.html
 
-html/index.html: html/blog/*.html templates/*.html
-	rm -f html/index.html
-	cat templates/header.html >> html/index.html
-	cat templates/topbar.html >> html/index.html
+website/index.html: html/blog/*.html html/general/*.html templates/*.html
+	rm -f website/index.html
+	cat templates/header.html >> website/index.html
+	cat templates/topbar.html >> website/index.html
+	find html -type f \
+	| sort -nr \
+	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/index.html; \
+	                    cat {} >> website/index.html; \
+	                    echo '</div>' >> website/index.html"
+	cat templates/footer.html >> website/index.html
+
+website/blog.html: html/blog/*.html templates/*.html
+	rm -f website/blog.html
+	cat templates/header.html >> website/blog.html
+	cat templates/topbar.html >> website/blog.html
 	ls html/blog/*.html \
-	| xargs -I{} sh -c "echo '<div class=\"post\">' >> html/index.html; \
-	                    cat {} >> html/index.html; \
-	                    echo '</div>' >> html/index.html"
-	cat templates/footer.html >> html/index.html
+	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/blog.html; \
+	                    cat {} >> website/blog.html; \
+	                    echo '</div>' >> website/blog.html"
+	cat templates/footer.html >> website/blog.html
 
 clean:
 	rm -rf html
@@ -20,3 +29,9 @@ html/blog/*.html: blog/*.md
 	ls blog/*.md \
 	| xargs -I{} sh -c 'markdown {} > html/{}'
 	rename .md .html html/blog/*.md
+
+html/general/*.html: general/*.md
+	mkdir -p html/general
+	ls general/*.md \
+	| xargs -I{} sh -c 'markdown {} > html/{}'
+	rename .md .html html/general/*.md

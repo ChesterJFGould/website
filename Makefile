@@ -2,7 +2,7 @@ website: index
 	mkdir -p html
 	cp html/index.html website/index.html
 
-index: blog
+index: html/blog/*.html 
 	rm -f html/index.html
 	ls html/blog/*.html \
 	| xargs -I{} sh -c "echo '<div class=\"post\">' >> html/index.html; \
@@ -12,7 +12,7 @@ index: blog
 clean:
 	rm -rf html
 
-blog: blog/*.md
+html/blog/*.html: blog/*.md
 	mkdir -p html/blog
 	ls blog/*.md \
 	| xargs -I{} sh -c 'markdown {} > html/{}'

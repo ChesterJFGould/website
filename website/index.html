@@ -1,3 +1,53 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<style>
+	body {
+		background-color: #222222;
+	}
+
+	.post {
+		background-color: #314159;
+		width: 50vw;
+		margin: 8vh auto 0vh auto;
+		box-shadow: 0.5vh 0.5vw 1vw 0 #327fa8;
+		padding: 2vw;
+		color: #CCCCCC;
+	}
+
+	.post>h1 {
+		color: #e5302d;
+	}
+
+	#topbar {
+		background-color: #314159;
+		width: 90vw;
+		display: flex;
+		list-style: none;
+		margin: 2vh auto 1vh auto;
+		padding: 0;
+		box-shadow: 0.5vh 0.5vw 1vw 0 #327fa8;
+		color: #CCCCCC;
+	}
+	#topbar>li {
+		padding: 1vh 1vw 1vh 1vw;
+	}
+
+	#topbar>li a {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	#topbar>li:hover {
+		background-color: #293649;
+	}
+	</style>
+</head>
+<body>
+<ul id="topbar">
+<li> <h3> <a href=/> Home </a> </h3> </li>
+<li> <h3> <a href=/blog> Blog </a> </h3> </li>
+</ul>
 <div class="post">
 <h1>Against Discourse</h1>
 
@@ -16,10 +66,14 @@
 <h1>Mathematical Abstraction</h1>
 </div>
 <div class="post">
-<p><code>Haskell
-This is some code
-</code></p>
-</div>
-<div class="post">
 <h1>The Unification of Math and Computer Science</h1>
 </div>
+<div class="post">
+<p>``` Haskell
+This is some code</p>
+
+<p>more code
+```</p>
+</div>
+</body>
+</html>

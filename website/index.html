@@ -2,35 +2,49 @@
 <html>
 <head>
 	<style>
+	:root {
+		--main-bg-color: #1d2021;
+		--normal-bg-color: #282828;
+		--normal-fg-color: #ebdbb2;
+		--normal-bd-color: #d79921;
+		--header-color: #98971a;
+		--bar-bg-color: #282828;
+		--bar-bg-hv-color: #1d2021;
+		--bar-fg-color: #b12686;
+		--bar-bd-color: #98971a;
+		--rule-color: #cc241d;
+	}
+
 	body {
-		background-color: #EEEEEE;
+		background-color: var(--main-bg-color);
 	}
 
 	.post {
-		background-color: #F9F9F9;
+		background-color: var(--normal-bg-color);
 		width: 45vw;
 		margin: 8vh auto 0vh auto;
-		box-shadow: 0.25vh 0.25vw 1vw 0 black;
+		border: 2px solid var(--normal-bd-color);
 		padding: 2vw;
+		color: var(--normal-fg-color);
 	}
 
 	.post>h1 {
-		color: #255b3d;
+		color: var(--header-color);
 	}
 
 	.post>hr {
-		border: 1px solid #255b3d;
+		border: 1px solid var(--rule-color);
 	}
 
 	#topbar {
-		background-color: #F9F9F9;
+		background-color: var(--bar-bg-color);
 		width: 90vw;
 		display: flex;
 		list-style: none;
 		margin: 2vh auto 1vh auto;
 		padding: 0;
-		box-shadow: 0.25vh 0.25vw 1vw 0 black;
-		color: #255b3d;
+		border: 2px solid var(--bar-bd-color);
+		color: var(--bar-fg-color);
 	}
 	#topbar>li {
 		padding: 1vh 1vw 1vh 1vw;
@@ -42,7 +56,7 @@
 	}
 
 	#topbar>li:hover {
-		background-color: #DDDDDD;
+		background-color: var(--bar-bg-hv-color);
 	}
 	</style>
 </head>
@@ -52,23 +66,19 @@
 <li> <h3> <a href=/blog> Blog </a> </h3> </li>
 </ul>
 <div class="post">
+<h1>Blog</h1>
+
+<hr />
+
+<p>I am currently working on some blog posts.</p>
+</div>
+<div class="post">
 <h1>Hello, World!</h1>
 
 <hr />
 
 <p>This is my new website!
 I&rsquo;m not quite sure about the colour scheme yet, it&rsquo;s a bit special&hellip;</p>
-</div>
-<div class="post">
-<h1>Against Discourse</h1>
-
-<ul>
-<li>Right to repair</li>
-<li>App store monopolies</li>
-<li>Cryptocurrency</li>
-<li>Freedom of speech</li>
-</ul>
-
 </div>
 </body>
 </html>

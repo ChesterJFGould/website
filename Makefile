@@ -1,6 +1,6 @@
 website: website/index.html website/blog.html website/aboutme.html
 
-website/index.html: html/blog/*.html html/general/*.html templates/*.html
+website/index.html: html/blog/*.html html/general/*.html html/aboutme/*.html templates/*.html
 	rm -f website/index.html
 	cat templates/header.html >> website/index.html
 	cat templates/topbar.html >> website/index.html

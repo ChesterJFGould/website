@@ -1,4 +1,4 @@
-website: website/index.html website/blog.html
+website: website/index.html website/blog.html website/aboutme.html
 
 website/index.html: html/blog/*.html html/general/*.html templates/*.html
 	rm -f website/index.html
@@ -21,6 +21,16 @@ website/blog.html: html/blog/*.html templates/*.html
 	                    echo '</div>' >> website/blog.html"
 	cat templates/footer.html >> website/blog.html
 
+website/aboutme.html: html/aboutme/*.html templates/*.html
+	rm -f website/aboutme.html
+	cat templates/header.html >> website/aboutme.html
+	cat templates/topbar.html >> website/aboutme.html
+	ls html/aboutme/*.html \
+	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/aboutme.html; \
+	                    cat {} >> website/aboutme.html; \
+	                    echo '</div>' >> website/aboutme.html"
+	cat templates/footer.html >> website/aboutme.html
+
 clean:
 	rm -rf html
 
@@ -35,3 +45,9 @@ html/general/*.html: general/*.md
 	ls general/*.md \
 	| xargs -I{} sh -c 'markdown {} > html/{}'
 	rename .md .html html/general/*.md
+
+html/aboutme/*.html: aboutme/*.md
+	mkdir -p html/aboutme
+	ls aboutme/*.md \
+	| xargs -I{} sh -c 'markdown {} > html/{}'
+	rename .md .html html/aboutme/*.md

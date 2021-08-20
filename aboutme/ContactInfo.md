@@ -4,4 +4,4 @@
 
 ## 💻️ [Github](https://github.com/ChesterJFGould)
 
-## 📺 [Twitch](https:/twitch.tv/ch3st3r)
+## 📺 [Twitch](https://twitch.tv/ch3st3r)

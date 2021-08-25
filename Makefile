@@ -4,7 +4,7 @@ website/index.html: html/blog/*.html html/general/*.html html/aboutme/*.html tem
 	rm -f website/index.html
 	cat templates/header.html >> website/index.html
 	cat templates/topbar.html >> website/index.html
-	find html -type f \
+	find html/blog html/general -type f \
 	| sort -n \
 	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/index.html; \
 	                    cat {} >> website/index.html; \
@@ -37,7 +37,7 @@ clean:
 html/blog/*.html: blog/*.md
 	mkdir -p html/blog
 	ls blog/*.md \
-	| xargs -I{} sh -c 'markdown {} > html/{}'
+	| xargs -I{} sh -c 'markdown -f fencedcode {} > html/{}'
 	rename .md .html html/blog/*.md
 
 html/general/*.html: general/*.md

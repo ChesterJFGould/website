@@ -16,6 +16,7 @@ website/blog.html: html/blog/*.html templates/*.html
 	cat templates/header.html >> website/blog.html
 	cat templates/topbar.html >> website/blog.html
 	ls html/blog/*.html \
+	| sort -t. --key 2,2 -rn \
 	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/blog.html; \
 	                    cat {} >> website/blog.html; \
 	                    echo '</div>' >> website/blog.html"

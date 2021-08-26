@@ -85,51 +85,6 @@
 <li> <h3> <a href=/aboutme.html> About Me </a> </h3> </li>
 </ul>
 <div class="post">
-<h1>A Simple Volume Script</h1>
-
-<hr />
-
-<p>Today we will be looking at 2 lines of shell script.
-While they may look quite unassuming, when bound to a shortcut (super-v in my case) they will give you a nice and elegant interface for changing the volume on your system.
-A demonstration can be found <a href="INSERT%20VIDEO%20LINK%20HERE">here</a>.</p>
-
-<p>The pre-requisite programs for today are the following</p>
-
-<ul>
-<li><a href="https://github.com/cdemoulins/pamixer">pamixer</a></li>
-<li><a href="https://github.com/ianremmler/wjt">wjt</a></li>
-<li><a href="https://www.gnu.org/software/findutils/">xargs</a></li>
-</ul>
-
-
-<p>Without further ado here is the script.</p>
-
-<pre><code>wjt -x $(pamixer --get-volume) \
-| xargs -I? pamixer --set-volume ?
-</code></pre>
-
-<p>The best place to start explaining this is probably <code>wjt</code>.</p>
-
-<p><code>wjt</code> is a very simple program, when you run it it gives the user a slider bar at the top of their screen.
-Whenever the user changes the value of the slider (by clicking or using one of the shortcuts, see <code>man wjt</code>) the new value is printed to stdout.
-An initial value can be provided though the <code>-x</code> flag as we do in our script.</p>
-
-<p>Next we use <code>pamixer</code> to interface with pulseaudio.
-On the first line <code>pamixer --get-volume</code> does exactly what you would expect, it prints the current volume.
-Say the current volume is 20.
-When we run <code>wjt -x $(pamixer --get-volume)</code> the code inside the <code>$()</code> is run first.
-This code is then replaced by its output, which we established is 20, giving us <code>wjt -x 20</code>.
-When this is then executed a slider pops up with an initial value of 20.</p>
-
-<p>Finally we will cover <code>xargs</code>.
-When the first line is executed its output (the new values of the slider) is put into the input of the second using the pipe (<code>|</code>) operator.
-<code>xargs</code> then takes each line of this output and runs the given command with the <code>?</code> replaced with the input on that line.
-Say we run the whole script and then change the slider to <code>21</code>, <code>xargs</code> will receive a line of input containing <code>21</code>.
-It will then take its given command <code>pamixer --set-volume ?</code> and replace the wildcard given by the <code>-I</code> flag (in this case <code>?</code>) with that line of input and then run the new command.
-This results in xargs running the command <code>pamixer --set-volume 21</code> which has exactly the effect you would expect, the system volume is set to 21.
-<code>xargs</code> then repeats this process for every new line of input, giving us a simple, elegant volume widget.</p>
-</div>
-<div class="post">
 <h1>Reversing words in Haskell</h1>
 
 <hr />
@@ -246,6 +201,51 @@ And as expected we just get back <em>&ldquo;The Industrial Revolution and its co
 
 <p>Good.
 Well I hope that wasn&rsquo;t too confusing, it&rsquo;s hard to tell how much detail I should give on each part.</p>
+</div>
+<div class="post">
+<h1>A Simple Volume Script</h1>
+
+<hr />
+
+<p>Today we will be looking at 2 lines of shell script.
+While they may look quite unassuming, when bound to a shortcut (super-v in my case) they will give you a nice and elegant interface for changing the volume on your system.
+A demonstration can be found <a href="INSERT%20VIDEO%20LINK%20HERE">here</a>.</p>
+
+<p>The pre-requisite programs for today are the following</p>
+
+<ul>
+<li><a href="https://github.com/cdemoulins/pamixer">pamixer</a></li>
+<li><a href="https://github.com/ianremmler/wjt">wjt</a></li>
+<li><a href="https://www.gnu.org/software/findutils/">xargs</a></li>
+</ul>
+
+
+<p>Without further ado here is the script.</p>
+
+<pre><code>wjt -x $(pamixer --get-volume) \
+| xargs -I? pamixer --set-volume ?
+</code></pre>
+
+<p>The best place to start explaining this is probably <code>wjt</code>.</p>
+
+<p><code>wjt</code> is a very simple program, when you run it it gives the user a slider bar at the top of their screen.
+Whenever the user changes the value of the slider (by clicking or using one of the shortcuts, see <code>man wjt</code>) the new value is printed to stdout.
+An initial value can be provided though the <code>-x</code> flag as we do in our script.</p>
+
+<p>Next we use <code>pamixer</code> to interface with pulseaudio.
+On the first line <code>pamixer --get-volume</code> does exactly what you would expect, it prints the current volume.
+Say the current volume is 20.
+When we run <code>wjt -x $(pamixer --get-volume)</code> the code inside the <code>$()</code> is run first.
+This code is then replaced by its output, which we established is 20, giving us <code>wjt -x 20</code>.
+When this is then executed a slider pops up with an initial value of 20.</p>
+
+<p>Finally we will cover <code>xargs</code>.
+When the first line is executed its output (the new values of the slider) is put into the input of the second using the pipe (<code>|</code>) operator.
+<code>xargs</code> then takes each line of this output and runs the given command with the <code>?</code> replaced with the input on that line.
+Say we run the whole script and then change the slider to <code>21</code>, <code>xargs</code> will receive a line of input containing <code>21</code>.
+It will then take its given command <code>pamixer --set-volume ?</code> and replace the wildcard given by the <code>-I</code> flag (in this case <code>?</code>) with that line of input and then run the new command.
+This results in xargs running the command <code>pamixer --set-volume 21</code> which has exactly the effect you would expect, the system volume is set to 21.
+<code>xargs</code> then repeats this process for every new line of input, giving us a simple, elegant volume widget.</p>
 </div>
 </body>
 </html>

@@ -14,6 +14,8 @@
 		--bar-fg-color: #b12686;
 		--bar-bd-color: #98971a;
 		--rule-color: #cc241d;
+		--link-unvisited-color: #458588;
+		--link-visited-color: #689d6a;
 	}
 
 	body {
@@ -35,6 +37,20 @@
 
 	.post>hr {
 		border: 1px solid var(--rule-color);
+	}
+
+	.post code {
+		background-color: var(--main-bg-color);
+		padding: 4px;
+		display: inline-block;
+	}
+
+	.post a {
+		color: var(--link-unvisited-color);
+	}
+
+	.post a:visited {
+		color: var(--link-visited-color);
 	}
 
 	#topbar {
@@ -68,6 +84,124 @@
 <li> <h3> <a href=/blog.html> Blog </a> </h3> </li>
 <li> <h3> <a href=/aboutme.html> About Me </a> </h3> </li>
 </ul>
+<div class="post">
+<h1>Reversing words in Haskell</h1>
+
+<hr />
+
+<p>As you might expect the pre-requisite program for today is just a <a href="https://www.haskell.org/ghc/">Haskell compiler</a>.</p>
+
+<p>The small program we will be studying today is one which reverses the words, but not the order of those words, in text piped into stdin.
+For example if you give it &ldquo;Hello there&rdquo; it will give you &ldquo;olleH ereht&rdquo;.
+The language we will be using is Haskell as the program is particularily short in it.
+I will also try my best to explain the program without mentioning monads even once (oops).</p>
+
+<p>Here we are</p>
+
+<pre><code>module Main where
+
+main :: IO ()
+main = getContents &gt;&gt;= putStrLn
+                       . unwords
+                       . map reverse
+                       . words
+</code></pre>
+
+<p>At the top we simple tell Haskell that this is the <code>Main</code> module, so it should look in this module for the <code>main</code> function which we define next.
+The first line of the <code>main</code> definition is simple asserting the type of the function, in this case <code>IO ()</code>.
+This type basically just tells Haskell that this function is allowed to perform i/o operations such as reading from stdin and writing to stdout as we will do.
+Finally we have the actually function body, this function takes no arguments so we simple say <code>main = ...</code> (if it took an argument we would write <code>main foo = ...</code> where <code>foo</code> is the argument variable).</p>
+
+<p>Now with that out of the way we can move on to the actual function content.
+We will start by rewriting the program in a more explicit way to perfectly layout exactly what it is doing.
+I have also included type annotation where I can so we can see exactly how the data is transformed.</p>
+
+<pre><code>module Main where
+
+main :: IO ()
+main = do
+       stdinContents &lt;- getContents
+       let stdinWords :: [String]
+           stdinWords = words stdin
+           reversedStdinWords :: [String]
+           reversedStdinWords = map reverse stdinWords
+           reversedStdin :: String
+           reversedStdin = unwords reversedStdin
+       putStrLn reversedStdin
+</code></pre>
+
+<p>We start by getting the contents of stdin.
+Although I can&rsquo;t include a type annotation for stdinContents it has type <code>String</code>.
+We won&rsquo;t worry to much about what the <code>&lt;-</code> does here, simple imagine it as telling haskell to run the function <code>getContents</code> (which has type <code>IO String</code>) and put its result into stdinContents.</p>
+
+<p>Now that we have the text that we are going to perform operations on, we should start doing the transform.
+Our first operation is applying the function <code>words</code> to the contents of stdin.
+<code>words</code> is a very simple function, it takes a <code>String</code> and splits it into a list of strings (<code>[String]</code>) where each element of the list is a word.
+We have the words now so how are we going to reverse them?
+To explain that we must understand both the <code>reverse</code> function and what a <code>String</code> actually is.</p>
+
+<p>The <code>reverse</code> function, like the <code>words</code> function, is extremely simple.
+It takes in some list of things and reverses it.
+So that isn&rsquo;t hard to understand, but how does this help us reverse a <code>String</code>?
+Well <code>String</code> is actually just another name for a list of characters (<code>[Char]</code>).
+Therefore if we apply <code>reverse</code> to a <code>String</code> we simply get the reversed <code>String</code>!</p>
+
+<p>Ok fine so we can reverse a single <code>String</code>, how would we go about reversing a list of strings?
+This is where <code>map</code> comes in.
+<code>map</code> takes in a function that takes in a <code>String</code> and returns a <code>String</code>, we would write this as the type <code>String -&gt; String</code>, and a list of strings and then creates a new list of strings by applying the function to each element of the list.
+Therefore the type of map is <code>(String -&gt; String) -&gt; [String] -&gt; [String]</code>.
+So when we give <code>map</code> the function <code>reverse</code> and the list of words in the stdin contents it will apply <code>reverse</code> to each of these words and then create a list of the results!</p>
+
+<p>Great!
+So now all we have to do is take our list of reversed words, put it back together as a single <code>String</code> and print it to stdout!</p>
+
+<p>To put the list back together we will use the function <code>unwords</code>.
+You can probably even guess what it is, it is simply the inverse function of <code>words</code> (this means that if you apply <code>words</code> to some text and then apply <code>unwords</code> to the result of that you will simply get the original text).
+So we simply apply <code>unwords</code> to the reversed words list and get the <code>String</code> that contains the contents of stdin with all the words reversed.</p>
+
+<p>Now for our last operation, printing to stdout.
+We use the function <code>putStrLn</code> for this which has the type <code>String -&gt; IO ()</code>.
+The type <code>IO ()</code> is just a way of saying that the function will take some i/o action and return the unit (<code>()</code>).
+In Haskell the unit type is essentially the equivalent of <code>void</code> in C, we return it when the function is simply used for the side effects it performs.</p>
+
+<p>Alright, so we now understand most of what the original program does.
+But what are these funny <code>&gt;&gt;=</code> and <code>.</code> operators?</p>
+
+<p>The <code>.</code> operator is probably the easiest to understand of the two so we will start with it.
+This operator performs what is called <em>function composition</em>.
+That is to say, if you have some functions <code>foo</code> and <code>bar</code> the composition of the two applied to some argument <code>x</code> would be just <code>foo (bar x)</code>.
+If we rewrite this using the <code>.</code> operator we would get <code>(foo . bar) x</code> which is equivalent to <code>foo (bar x)</code>.
+Now say we want to compose more than two functions (as we do in our program), if we compose three example functions <code>foo</code>, <code>bar</code>, and <code>baz</code> like so <code>(foo . bar . baz) x</code> this would be equivalent to <code>foo (bar (baz x))</code>.
+The point of this is that now we don&rsquo;t necessarily need to apply the function right away.
+We could give the new function a name like <code>let fooBarBaz = foo . bar . baz</code> and then use it later in our program.
+This is great because now we have an easy way to create larger functions out of smaller ones which is the key to functional programming.</p>
+
+<p>Now we get to the <code>&gt;&gt;=</code> operator.
+We won&rsquo;t dive too deep into what it actually is as that is a whole post (or series of posts) unto itself.
+Instead I will give you a simplified model of what it does here.
+In our program <code>getContents &gt;&gt;= putStrLn . unwords . map reverse . words</code> is exactly equivalent to the following.</p>
+
+<pre><code>do
+stdinContents &lt;- getContents
+(putStrLn . unwords . map reverse . words) stdinContents
+</code></pre>
+
+<p>In fact we can think of it as having the type <code>IO String -&gt; (String -&gt; IO ()) -&gt; IO ()</code>.
+It just takes some function which interacts with the outside world and returns a string and a function which takes in a string and then interacts with the outside world and runs the second with the result of the first.
+In this way it is actually very similar to function composition.</p>
+
+<p>Awesome, so now we fully understand the initial program (with a mild amount of handwaving and indirection).
+Lets bloody well go and try it out old sport.</p>
+
+<p>Our sample text will be the first line of everyones favourite based boomer manifesto, <em>&ldquo;The Industrial Revolution and its consequences have been a disaster for the human race.&rdquo;</em>.
+Good so we will put that into the file <code>unaboomer.txt</code>, compile our program into the binary <code>wordReverse</code> using the command <code>ghc wordReverse.hs</code> (assuming the text of our program is in the file <code>wordReverse.hs</code>), and then run it with <code>./wordReverse &lt; unaboomer.txt</code>.
+This gives us the desired output of <em>&ldquo;ehT lairtsudnI noituloveR dna sti secneuqesnoc evah neeb a retsasid rof eht namuh .ecar&rdquo;</em>.
+Now we would also expect that running it twice would give us the original text so lets try that with <code>./wordReverse &lt; unaboomer.txt | ./wordReverse</code>.
+And as expected we just get back <em>&ldquo;The Industrial Revolution and its consequences have been a disaster for the human race.&rdquo;</em>.</p>
+
+<p>Good.
+Well I hope that wasn&rsquo;t too confusing, it&rsquo;s hard to tell how much detail I should give on each part.</p>
+</div>
 <div class="post">
 <h1>A Simple Volume Script</h1>
 

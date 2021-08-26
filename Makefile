@@ -5,7 +5,7 @@ website/index.html: html/blog/*.html html/general/*.html html/aboutme/*.html tem
 	cat templates/header.html >> website/index.html
 	cat templates/topbar.html >> website/index.html
 	find html/blog html/general -type f \
-	| sort -n \
+	| sort -t. --key 2,2 -rn \
 	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/index.html; \
 	                    cat {} >> website/index.html; \
 	                    echo '</div>' >> website/index.html"

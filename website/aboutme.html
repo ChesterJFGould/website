@@ -14,6 +14,8 @@
 		--bar-fg-color: #b12686;
 		--bar-bd-color: #98971a;
 		--rule-color: #cc241d;
+		--link-unvisited-color: #458588;
+		--link-visited-color: #689d6a;
 	}
 
 	body {
@@ -35,6 +37,20 @@
 
 	.post>hr {
 		border: 1px solid var(--rule-color);
+	}
+
+	.post code {
+		background-color: var(--main-bg-color);
+		padding: 4px;
+		display: inline-block;
+	}
+
+	.post a {
+		color: var(--link-unvisited-color);
+	}
+
+	.post a:visited {
+		color: var(--link-visited-color);
 	}
 
 	#topbar {

@@ -1,10 +1,10 @@
-website: website/index.html website/blog.html website/aboutme.html
+website: website/index.html website/blog.html website/aboutme.html website/software.html
 
-website/index.html: html/blog/*.html html/general/*.html html/aboutme/*.html templates/*.html
+website/index.html: html/blog/*.html html/software/*.html html/general/*.html html/aboutme/*.html templates/*.html
 	rm -f website/index.html
 	cat templates/header.html >> website/index.html
 	cat templates/topbar.html >> website/index.html
-	find html/blog html/general -type f \
+	find html/blog html/software html/general -type f \
 	| sort -t. --key 2,2 -rn \
 	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/index.html; \
 	                    cat {} >> website/index.html; \
@@ -32,6 +32,16 @@ website/aboutme.html: html/aboutme/*.html templates/*.html
 	                    echo '</div>' >> website/aboutme.html"
 	cat templates/footer.html >> website/aboutme.html
 
+website/software.html: html/software/*.html templates/*.html
+	rm -f website/software.html
+	cat templates/header.html >> website/software.html
+	cat templates/topbar.html >> website/software.html
+	ls html/software/*.html \
+	| xargs -I{} sh -c "echo '<div class=\"post\">' >> website/software.html; \
+	                    cat {} >> website/software.html; \
+	                    echo '</div>' >> website/software.html"
+	cat templates/footer.html >> website/software.html
+
 clean:
 	rm -rf html
 
@@ -52,3 +62,9 @@ html/aboutme/*.html: aboutme/*.md
 	ls aboutme/*.md \
 	| xargs -I{} sh -c 'markdown {} > html/{}'
 	rename .md .html html/aboutme/*.md
+
+html/software/*.html: software/*.md
+	mkdir -p html/software
+	ls software/*.md \
+	| xargs -I{} sh -c 'markdown {} > html/{}'
+	rename .md .html html/software/*.md

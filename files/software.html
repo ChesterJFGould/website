@@ -1,0 +1,149 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<meta charset="utf-8">
+	<style>
+	:root {
+		--main-bg-color: #1d2021;
+		--normal-bg-color: #282828;
+		--normal-fg-color: #ebdbb2;
+		--normal-bd-color: #d79921;
+		--header-color: #98971a;
+		--bar-bg-color: #282828;
+		--bar-bg-hv-color: #1d2021;
+		--bar-fg-color: #b12686;
+		--bar-bd-color: #98971a;
+		--rule-color: #cc241d;
+		--link-unvisited-color: #458588;
+		--link-visited-color: #689d6a;
+	}
+
+	body {
+		background-color: var(--main-bg-color);
+	}
+
+	.post {
+		background-color: var(--normal-bg-color);
+		width: 45vw;
+		margin: 8vh auto 0vh auto;
+		border: 2px solid var(--normal-bd-color);
+		padding: 2vw;
+		color: var(--normal-fg-color);
+	}
+
+	.post>h1 {
+		color: var(--header-color);
+	}
+
+	.post>hr {
+		border: 1px solid var(--rule-color);
+	}
+
+	.post code {
+		background-color: var(--main-bg-color);
+		padding: 4px;
+		display: inline-block;
+	}
+
+	.post a {
+		color: var(--link-unvisited-color);
+	}
+
+	.post a:visited {
+		color: var(--link-visited-color);
+	}
+
+	#topbar {
+		background-color: var(--bar-bg-color);
+		width: 90vw;
+		display: flex;
+		list-style: none;
+		margin: 2vh auto 1vh auto;
+		padding: 0;
+		border: 2px solid var(--bar-bd-color);
+		color: var(--bar-fg-color);
+	}
+	#topbar>li {
+
+	}
+
+	#topbar>li a {
+		text-decoration: none;
+		color: inherit;
+		padding: 1vh 1vw 1vh 1vw;
+	}
+
+	#topbar>li:hover {
+		background-color: var(--bar-bg-hv-color);
+	}
+	</style>
+</head>
+<body>
+<ul id="topbar">
+<li> <h3> <a href=/> Home </a> </h3> </li>
+<li> <h3> <a href=/blog.html> Blog </a> </h3> </li>
+<li> <h3> <a href=/software.html> Software </a> </h3> </li>
+<li> <h3> <a href=/aboutme.html> About Me </a> </h3> </li>
+</ul>
+<div class=post>
+<h1>Known Good Software</h1>
+
+<hr />
+
+<p>Good software is not only a pleasure to use, but is well written.
+Unfortunately most software is rarely a pleasure to use, let alone well written.</p>
+
+<h2>Window Managers</h2>
+
+<ul>
+<li><a href="https://dwm.suckless.org/">dwm</a></li>
+</ul>
+
+
+<h2>Terminal Emulators</h2>
+
+<p>This class of software shouldn&rsquo;t still be so important by now, finding a better solution for creating interfaces to things is a top priority.</p>
+
+<ul>
+<li><a href="https://st.suckless.org/">st</a></li>
+</ul>
+
+
+<h2>Web Browsers</h2>
+
+<p>There are no known web browsers which even approach being good.
+Use something open source, a free browser might be a contradiction in terms.</p>
+
+<h2>Text Editors</h2>
+
+<p>Text is the most extensible data format at the moment.
+Being able to edit it will be of vital importance while this is true.</p>
+
+<ul>
+<li><a href="https://github.com/martanne/vis/">vis</a></li>
+<li><a href="https://kakoune.org/">kakoune</a></li>
+</ul>
+
+
+<h2>Programming Languages</h2>
+
+<p>To what degree we should ignore the underlying execution of the code and in what way is unclear.
+Therefore languages such as Haskell cannot be considered good software at the present time.</p>
+
+<ul>
+<li>C</li>
+<li>Go</li>
+</ul>
+
+
+<h2>User Interface Tools</h2>
+
+<ul>
+<li><a href="https://tools.suckless.org/dmenu/">dmenu</a></li>
+<li><a href="https://github.com/ianremmler/wjt">wjt</a></li>
+<li><a href="https://github.com/phillbush/xmenu">xmenu</a></li>
+</ul>
+
+</div>
+</body>
+</html>

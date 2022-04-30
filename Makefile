@@ -1,12 +1,12 @@
 .PHONY: website
-website: website/index.html website/blog.html website/software.html website/aboutme.html
+website: files/index.html files/blog.html files/software.html files/aboutme.html
 
 .PHONY: clean
 clean:
-	rm -rf website
-	mkdir website
+	rm -rf files
+	mkdir files
 
-website/index.html: content/*/*.md templates/*.html
+files/index.html: content/*/*.md templates/*.html
 	cat templates/header.html templates/topbar.html > $@
 	ls content/*/*.md \
 	| sort -rn -t. --key 2,2 \
@@ -14,7 +14,7 @@ website/index.html: content/*/*.md templates/*.html
 	>> $@
 	cat templates/footer.html >> $@
 
-website/%.html: content/%/*.md templates/*.html
+files/%.html: content/%/*.md templates/*.html
 	cat templates/header.html templates/topbar.html > $@
 	ls content/$*/*.md \
 	| sort -rn -t. --key 2,2 \

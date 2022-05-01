@@ -3,8 +3,7 @@ website: files/index.html files/blog.html files/software.html files/aboutme.html
 
 .PHONY: clean
 clean:
-	rm -rf files
-	mkdir files
+	rm -f files/*.html
 
 files/index.html: content/*/*.md templates/*.html
 	cat templates/header.html templates/topbar.html > $@

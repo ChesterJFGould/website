@@ -1,0 +1,29 @@
+<nav>
+	<style>
+		#navbar {
+			background-color: {{ .Site.Params.colours.bar_bg }};
+			width: 90vw;
+			display: flex;
+			list-style: none;
+			margin: 2vh auto 1vh auto;
+			padding: 0;
+			border: 2px solid {{ .Site.Params.colours.bar_bd }};
+			color: {{ .Site.Params.colours.bar_fg }};
+		}
+
+		#navbar>li a {
+			text-decoration: none;
+			color: inherit;
+			padding: 1vh 1vw 1vh 1vw;
+		}
+
+		#navbar>li:hover {
+			background-color: {{ .Site.Params.colours.bar_bg_hv }};
+		}
+	</style>
+	<ul id="navbar">
+		{{ range .Site.Menus.main }}
+			<li> <h3> <a href='{{ .URL }}'> {{ .Name }} </a> </h3> </li>
+		{{ end }}
+	</ul>
+</nav>

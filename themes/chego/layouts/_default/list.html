@@ -1,0 +1,18 @@
+{{ partial "header.html" . -}}
+<article>
+{{ .Content -}}
+</article>
+<div class='PostList'>
+{{ if .IsHome }}
+{{ range .Site.RegularPages }}
+{{ if .Params.front_page }}
+	{{ partial "post.html" . }}
+{{ end }}
+{{ end }}
+{{ else }}
+{{ range .RegularPages }}
+	{{ partial "post.html" . }}
+{{ end }}
+{{ end }}
+</div>
+{{- partial "footer.html" . }}

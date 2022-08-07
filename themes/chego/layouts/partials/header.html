@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="{{ .Site.Language }}">
+<head>
+	<title>{{ if not .IsHome }}{{ .Title | title }} | {{ end }}{{ .Site.Title }}</title>
+	<link rel="canonical" href="{{ .Site.BaseURL }}">
+	<link rel='alternate' type='application/rss+xml' title="{{ .Site.Title }} RSS" href='/index.xml'>
+	{{ with .Site.Params.favicon }}<link rel="icon" href="{{ . }}">
+	{{ end -}}
+	<meta name="description" content="{{ with .Params.description }}{{ . }}{{ else }}{{ .Summary }}{{ end }}">
+	{{ if isset .Params "tags" }}<meta name="keywords" content="{{ with .Params.tags }}{{ delimit . ", " }}{{ end }}">
+	{{ end -}}
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="index, follow">
+	<meta charset="utf-8">
+	<style>
+		body {
+			background: {{ .Site.Params.colours.main_bg }};
+			color: {{ .Site.Params.colours.normal_fg }};
+		}
+
+		a {
+			color: {{ .Site.Params.colours.link_unvisited }};
+		}
+
+		a:visited {
+			color: {{ .Site.Params.colours.link_visited }};
+		}
+
+		.Post {
+			background-color: {{ .Site.Params.colours.normal_bg }};
+			width: 45vw;
+			margin: 8vh auto 0vh auto;
+			border: 2px solid {{ .Site.Params.colours.normal_bd }};
+			padding: 2vw;
+			color: {{ .Site.Params.colours.normal_fg }};
+		}
+
+		.Post .PostTitle {
+			color: {{ .Site.Params.colours.header }};
+			font-size: 2em;
+			text-decoration: none;
+		}
+
+		.Post code {
+			background-color: {{ .Site.Params.colours.main_bg }};
+			padding: 4px;
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+{{- if .Site.Menus.main }}
+	{{ partial "nav.html" . }}
+{{ end }}
+<main>

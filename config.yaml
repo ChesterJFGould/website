@@ -1,0 +1,36 @@
+baseURL: http://example.org/
+languageCode: en-us
+title: Chesters Website
+
+theme: chego
+
+menu:
+  main:
+    - name: Home
+      url: /
+      weight: 1
+    - name: Blog
+      url: /blog/
+      weight: 2
+    - name: Software
+      url: /software/
+      weight: 3
+    - name: Contact Me
+      url: /contactinfo/
+      weight: 4
+
+params:
+  colours:
+    main_bg: '#1d2021'
+    normal_bg: '#282828'
+    normal_fg: '#ebdbb2'
+    normal_bd: '#d79921'
+    header: '#98971a'
+    bar_bg: '#282828'
+    bar_bg_hv: '#1d2021'
+    bar_fg: '#b12686'
+    bar_bd: '#98971a'
+    rule: '#cc241d'
+    link_unvisited: '#458588'
+    link_visited: '#689d6a'
+

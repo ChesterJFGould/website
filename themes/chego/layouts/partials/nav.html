@@ -9,12 +9,14 @@
 			padding: 0;
 			border: 2px solid {{ .Site.Params.colours.bar_bd }};
 			color: {{ .Site.Params.colours.bar_fg }};
+			display: flex;
+			flex-wrap: wrap;
 		}
 
 		#navbar>li a {
 			text-decoration: none;
 			color: inherit;
-			padding: 1vh 1vw 1vh 1vw;
+			padding: 0px 1em;
 		}
 
 		#navbar>li:hover {

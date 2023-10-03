@@ -20,7 +20,7 @@ state and then compare the results, maybe using a few tricks during the
 comparison, such as alpha and eta rules.
 Once we want to add in effects however, things get more complicated.
 With a pure program we have the sense that the final state of an expression,
-it's normal form, encompasses everything there was to know about the
+its normal form, encompasses everything there was to know about the
 expression.
 The expression `(\x. x + 2) 2` doesn't really convey more information than
 simply `4`.
